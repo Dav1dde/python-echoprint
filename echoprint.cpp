@@ -18,6 +18,12 @@ static PyObject * echoprint_codegen(PyObject *self, PyObject *args) {
 
     py_samples = PySequence_Fast(py_samples, "expected a sequence");
     num_samples = PySequence_Length(py_samples);
+    // prevent segmentation faults in the codegen
+    if (num_samples == 0) {
+        Py_DECREF(py_samples);
+
+        Py_RETURN_NONE;
+    }
     samples = new float[num_samples];
 
     for (i = 0; i < num_samples; i++) {
