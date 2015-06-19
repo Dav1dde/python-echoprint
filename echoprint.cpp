@@ -29,6 +29,7 @@ static PyObject * echoprint_codegen(PyObject *self, PyObject *args) {
     for (num_samples = 0; item = PyIter_Next(py_samples); ++num_samples) {
         if (!PyFloat_Check(item)) {
             Py_DECREF(item);
+            Py_DECREF(py_samples);
             PyErr_SetString(PyExc_TypeError, "expected sequence of floats");
             return NULL;
         }
