@@ -1,0 +1,8 @@
+*.pyc
+build
+dist
+__pycache__
+*.o
+*.so
+/echoprint.cxx
+python_echoprint.egg-info/
